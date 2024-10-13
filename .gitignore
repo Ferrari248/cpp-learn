@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# ly add
+.vscode
+.idea

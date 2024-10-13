@@ -1,0 +1,4 @@
+
+c++ -std=c++17 hello_world.cpp -o out/hello_world
+
+./out/hello_world

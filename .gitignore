@@ -34,3 +34,4 @@
 # ly add
 .vscode
 .idea
+**/out/*

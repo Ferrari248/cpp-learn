@@ -8,6 +8,9 @@ struct student
     string name;
     int age;
     int id;
+    string f1() {
+        return "abc";
+    };
 };
 
 

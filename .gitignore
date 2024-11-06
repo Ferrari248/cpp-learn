@@ -35,3 +35,4 @@
 .vscode
 .idea
 **/out/*
+cmake-build-debug

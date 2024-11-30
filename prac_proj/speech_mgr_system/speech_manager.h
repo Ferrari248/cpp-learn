@@ -9,4 +9,6 @@ public:
     ~SpeechManager();
 
     void show_menu();
+
+    void exit_system();
 };

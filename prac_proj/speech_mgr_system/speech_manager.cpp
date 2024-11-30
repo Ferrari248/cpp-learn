@@ -12,3 +12,9 @@ void SpeechManager:: show_menu() {
     cout << "********* 3. clear history          **********" << endl;
     cout << "********* 0. exit                   **********" << endl;
 };
+
+void SpeechManager:: exit_system() {
+    cout << "good bye" << endl;
+    cin.get();
+    exit(0);
+}

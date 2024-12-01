@@ -14,7 +14,10 @@ void SpeechManager:: show_menu() {
 };
 
 void SpeechManager:: exit_system() {
+    cout << "please input user rating: " << endl;
+    int rating;
+    cin >> rating;
+    cout << "thanks, get your rating: " << rating << endl;
     cout << "good bye" << endl;
-    cin.get();
     exit(0);
 }

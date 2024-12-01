@@ -3,12 +3,13 @@
 
 using namespace std;
 
-class Speecher {
+class Speaker {
 public:
+    long  id;
     string name;
     float score[2];
 
-    Speecher();
+    Speaker();
 
-    ~Speecher();
+    ~Speaker();
 };

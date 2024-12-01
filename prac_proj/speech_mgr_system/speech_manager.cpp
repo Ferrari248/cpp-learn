@@ -1,6 +1,8 @@
 #include "speech_manager.h"
 
-SpeechManager::SpeechManager(){}
+SpeechManager::SpeechManager() {
+    this->init_speech();
+}
 
 SpeechManager::~SpeechManager(){}
 
@@ -20,4 +22,13 @@ void SpeechManager:: exit_system() {
     cout << "thanks, get your rating: " << rating << endl;
     cout << "good bye" << endl;
     exit(0);
+}
+
+void SpeechManager:: init_speech() {
+    this->v1.clear();
+    this->v2.clear();
+    this->v3.clear();
+    this->m_speaker.clear();
+    this->m_index = 1;
+
 }

@@ -12,10 +12,13 @@ int main() {
         cin >> choice;
         switch (choice) {
             case 1:
+                sm.begin_new_race();
                 break;
             case 2:
+                sm.show_history();
                 break;
             case 3:
+                sm.clear_history();
                 break;
             case 0:
                 sm.exit_system();

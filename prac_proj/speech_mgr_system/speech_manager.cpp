@@ -32,3 +32,15 @@ void SpeechManager:: init_speech() {
     this->m_index = 1;
 
 }
+
+void SpeechManager:: show_history() {
+    cout << "history is ..." << endl;
+}
+
+void SpeechManager:: clear_history() {
+    cout << "clear_history ..." << endl;
+}
+
+void SpeechManager:: begin_new_race() {
+    cout << "begin_new_race ..." << endl;
+}

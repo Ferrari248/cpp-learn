@@ -22,12 +22,18 @@ public:
     // 当前是第几场比赛
     int m_index;
 
-    // 初始化
-    void init_speech();
-
     SpeechManager();
 
     ~SpeechManager();
+
+    // 初始化
+    void init_speech();
+
+    void begin_new_race();
+
+    void show_history();
+
+    void clear_history();
 
     void show_menu();
 

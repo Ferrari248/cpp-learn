@@ -41,4 +41,8 @@ public:
     void init_speech();
 
     void create_speaker();
+
+    void start_speech();
+
+    void speech_draw();
 };

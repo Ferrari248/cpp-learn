@@ -5,10 +5,6 @@ using namespace std;
 
 int main() {
     SpeechManager sm;
-    // for (map<int,Speaker>::iterator it = sm.m_speaker.begin(); it != sm.m_speaker.end(); it++) {
-    //     cout << it->first << it->second.name << it->second.score[0] <<  endl;
-    // }
-
     int choice = 0;
     while (true) {
         sm.show_menu();

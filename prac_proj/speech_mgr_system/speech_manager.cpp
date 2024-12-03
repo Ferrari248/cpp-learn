@@ -1,3 +1,6 @@
+#include <thread>
+#include <chrono>
+#include <algorithm>
 #include "speech_manager.h"
 
 SpeechManager::SpeechManager() {
@@ -44,6 +47,7 @@ void SpeechManager:: clear_history() {
 
 void SpeechManager:: begin_new_race() {
     cout << "begin_new_race ..." << endl;
+    this->start_speech();
 }
 
 void SpeechManager:: create_speaker() {
@@ -62,4 +66,47 @@ void SpeechManager:: create_speaker() {
         this->v1.push_back(id);
         this->m_speaker.insert(make_pair(id , sp) );
     }
+}
+
+void SpeechManager:: start_speech() {
+    // 第一轮
+
+    // 1.抽签
+    speech_draw();
+
+    // 2.比赛
+
+    // 3.显示晋级结果
+
+    // 第二轮
+
+    // 1.抽签
+
+    // 2.比赛
+
+    // 3.显示最终结果
+
+    // 4.保存比赛记录
+}
+
+void SpeechManager:: speech_draw() {
+    cout << "第"<< this->m_index <<"轮比赛开始，抽签中..." << endl;
+    this_thread::sleep_for(chrono::milliseconds(2000));
+    cout << "=========" << endl;
+    cout << "抽签结果：" << endl;
+
+    if (this->m_index == 1) {
+        random_shuffle(v1.begin(), v1.end());
+        for (vector<int>::iterator it = v1.begin(); it != v1.end(); it++) {
+            cout << *it << endl;
+        }
+    } else {
+        random_shuffle(v2.begin(), v2.end());
+        for (vector<int>::iterator it = v2.begin(); it != v2.end(); it++) {
+            cout << *it << endl;
+        }
+    }
+
+    cout << "=========" << endl;
+    cin.get();
 }

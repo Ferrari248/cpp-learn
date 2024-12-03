@@ -46,13 +46,14 @@ void SpeechManager:: begin_new_race() {
     cout << "begin_new_race ..." << endl;
 }
 
-void SpeechManager::  () {
+void SpeechManager:: create_speaker() {
     string name_seed = "ABCDEFGHIJKL";
     for (int i = 0; i < name_seed.size(); i++) {
         string name = "player";
         name += name_seed[i];
         Speaker sp;
         sp.name = name;
+        // for (float & j : sp.score) {
         for (int j = 0; j < 2; j++) {
             sp.score[j] = 0;
         }

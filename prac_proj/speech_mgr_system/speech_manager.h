@@ -26,9 +26,6 @@ public:
 
     ~SpeechManager();
 
-    // 初始化
-    void init_speech();
-
     void begin_new_race();
 
     void show_history();
@@ -38,4 +35,10 @@ public:
     void show_menu();
 
     void exit_system();
+
+
+    // 初始化
+    void init_speech();
+
+    void create_speaker();
 };

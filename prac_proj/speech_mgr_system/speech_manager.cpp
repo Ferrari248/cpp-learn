@@ -2,6 +2,7 @@
 
 SpeechManager::SpeechManager() {
     this->init_speech();
+    this->create_speaker ();
 }
 
 SpeechManager::~SpeechManager(){}
@@ -43,4 +44,21 @@ void SpeechManager:: clear_history() {
 
 void SpeechManager:: begin_new_race() {
     cout << "begin_new_race ..." << endl;
+}
+
+void SpeechManager::  () {
+    string name_seed = "ABCDEFGHIJKL";
+    for (int i = 0; i < name_seed.size(); i++) {
+        string name = "player";
+        name += name_seed[i];
+        Speaker sp;
+        sp.name = name;
+        for (int j = 0; j < 2; j++) {
+            sp.score[j] = 0;
+        }
+
+        int id = i + 10001;
+        this->v1.push_back(id);
+        this->m_speaker.insert(make_pair(id , sp) );
+    }
 }

@@ -8,7 +8,7 @@ int main() {
     int choice = 0;
     while (true) {
         sm.show_menu();
-        cout << "plese input your choice:" << endl;
+        cout << "please input your choice:" << endl;
         cin >> choice;
         switch (choice) {
             case 1:

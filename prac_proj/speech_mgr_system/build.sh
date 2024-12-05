@@ -2,6 +2,8 @@
 
 rm -rf out
 mkdir out
-c++  -std=c++17  *.cpp -o out/s
+
+g++  -std=c++17  -I. main.cpp -o temps
+mv temps out/s
 
 echo "build finish"

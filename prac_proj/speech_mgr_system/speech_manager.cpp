@@ -1,6 +1,7 @@
-#include <thread>
-#include <chrono>
 #include <algorithm>
+#include <chrono>
+#include <random>
+#include <thread>
 #include "speech_manager.h"
 
 SpeechManager::SpeechManager() {

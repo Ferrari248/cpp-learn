@@ -37,7 +37,6 @@ public:
     void exit_system();
 
 
-    // 初始化
     void init_speech();
 
     void create_speaker();

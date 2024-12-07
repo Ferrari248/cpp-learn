@@ -1,7 +1,3 @@
-#include <algorithm>
-#include <chrono>
-#include <random>
-#include <thread>
 #include "speech_manager.h"
 
 SpeechManager::SpeechManager() {
@@ -71,17 +67,17 @@ void SpeechManager:: create_speaker() {
 
 void SpeechManager:: start_speech() {
     // 第一轮
-
     // 1.抽签
     speech_draw();
 
     // 2.比赛
+    speaker_contest();
 
     // 3.显示晋级结果
 
     // 第二轮
-
     // 1.抽签
+    // speech_draw();
 
     // 2.比赛
 
@@ -91,18 +87,20 @@ void SpeechManager:: start_speech() {
 }
 
 void SpeechManager:: speech_draw() {
-    cout << "第"<< this->m_index <<"轮比赛开始，抽签中..." << endl;
-    this_thread::sleep_for(chrono::milliseconds(2000));
+    cout << "第"<< this->m_index <<"轮比赛 抽签中..." << endl;
+    // 模拟抽签耗时
+    this_thread::sleep_for(chrono::milliseconds(300));
     cout << "=========" << endl;
     cout << "抽签结果：" << endl;
 
+    default_random_engine random_engine(random_device{}());
     if (this->m_index == 1) {
-        random_shuffle(v1.begin(), v1.end());
+        shuffle(v1.begin(), v1.end(), random_engine);
         for (vector<int>::iterator it = v1.begin(); it != v1.end(); it++) {
             cout << *it << endl;
         }
     } else {
-        random_shuffle(v2.begin(), v2.end());
+        shuffle(v2.begin(), v2.end(), random_engine);
         for (vector<int>::iterator it = v2.begin(); it != v2.end(); it++) {
             cout << *it << endl;
         }
@@ -110,4 +108,54 @@ void SpeechManager:: speech_draw() {
 
     cout << "=========" << endl;
     cin.get();
+}
+
+void SpeechManager:: speaker_contest() {
+    cout << "第"<< this->m_index <<"轮比赛 正式开赛..." << endl;
+    multimap<double, int, greater<double>> group_score;
+    int num = 0;
+
+    // 模拟比赛耗时
+    this_thread::sleep_for(chrono::milliseconds(500));
+    vector<int> v_src;
+    if (this->m_index == 1) {
+        v_src = v1;
+    } else {
+        v_src = v2;
+    }
+    deque<double> d;
+    for (vector<int>::iterator it = v_src.begin(); it != v_src.end(); it++) {
+        num++;
+        for (int i = 0; i < 10; i++) {
+            double score = (rand() % 400 + 600) / 10.0f;
+            printf("%.1f ", score);
+            d.push_back((score));
+        }
+        cout << endl;
+        sort(d.begin(), d.end(), greater<double>());
+        d.pop_front();
+        d.pop_back();
+        double sum = accumulate(d.begin(), d.end(), 0.0f);
+        double avg = sum / (double) d.size();
+        printf("选手编号：%d 姓名：%s 平均分： %.1f \n", *it, this->m_speaker[*it].name.c_str(), avg);
+
+        group_score.insert(make_pair(avg, *it));
+        if (num % 6 == 0) {
+            printf("小组%d 名次：\n", num / 6);
+            for (multimap<double, int, greater<double>> ::iterator it = group_score.begin(); it != group_score.end(); it++) {
+                Speaker speaker = this->m_speaker[it->second];
+                printf("编号：%ld 姓名：%s 成绩：%.1f\n", speaker.id, speaker.name.c_str(), it->first);
+            }
+            int count = 0;
+            for (multimap<double, int, greater<double>> ::iterator it = group_score.begin(); it != group_score.end() && count < 3; it++, count++) {
+                if (this->m_index == 1) {
+                    v2.push_back(it->second);
+                } else {
+                    v3.push_back(it->second);
+                }
+            }
+            group_score.clear();
+        }
+    }
+    printf("第%d轮比赛 结束\n", this->m_index);
 }

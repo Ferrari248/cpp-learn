@@ -1,6 +1,12 @@
 #pragma once
 #include <vector>
 #include <map>
+#include <algorithm>
+#include <chrono>
+#include <deque>
+#include <random>
+#include <thread>
+#include <numeric>
 #include "speaker.h"
 
 using namespace std;
@@ -44,4 +50,6 @@ public:
     void start_speech();
 
     void speech_draw();
+
+    void speaker_contest();
 };

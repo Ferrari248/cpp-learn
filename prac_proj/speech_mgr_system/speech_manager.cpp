@@ -98,17 +98,15 @@ void SpeechManager:: speech_draw() {
     if (this->m_index == 1) {
         shuffle(v1.begin(), v1.end(), random_engine);
         for (vector<int>::iterator it = v1.begin(); it != v1.end(); it++) {
-            cout << *it << endl;
+            cout << *it << " ";
         }
     } else {
         shuffle(v2.begin(), v2.end(), random_engine);
         for (vector<int>::iterator it = v2.begin(); it != v2.end(); it++) {
-            cout << *it << endl;
+            cout << *it << " ";
         }
     }
-
     cout << "=========" << endl;
-    cin.get();
 }
 
 void SpeechManager:: speaker_contest() {
@@ -139,13 +137,14 @@ void SpeechManager:: speaker_contest() {
         double sum = accumulate(d.begin(), d.end(), 0.0f);
         double avg = sum / (double) d.size();
         printf("选手编号：%d 姓名：%s 平均分： %.1f \n", *it, this->m_speaker[*it].name.c_str(), avg);
+        this->m_speaker[*it].score[this->m_index - 1] = avg;
 
         group_score.insert(make_pair(avg, *it));
         if (num % 6 == 0) {
             printf("小组%d 名次：\n", num / 6);
             for (multimap<double, int, greater<double>> ::iterator it = group_score.begin(); it != group_score.end(); it++) {
                 Speaker speaker = this->m_speaker[it->second];
-                printf("选手编号：%ld 姓名：%s 成绩：%.1f\n", speaker.id, speaker.name.c_str(), it->first);
+                printf("选手编号：%d 姓名：%s 成绩：%.1f\n", it->second, speaker.name.c_str(), it->first);
             }
             int count = 0;
             for (multimap<double, int, greater<double>> ::iterator it = group_score.begin(); it != group_score.end() && count < 3; it++, count++) {
@@ -171,7 +170,7 @@ void SpeechManager:: show_score() {
     }
     for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
         Speaker speaker = this->m_speaker[*it];
-        printf("选手编号：%ld 姓名：%s 成绩：%.1f\n", speaker.id, speaker.name.c_str(), speaker.score[this->m_index ]);
+        printf("选手编号：%d 姓名：%s 成绩：%.1f\n", *it, speaker.name.c_str(), speaker.score[this->m_index-1]);
     }
 
 }

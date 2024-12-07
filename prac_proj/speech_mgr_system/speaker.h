@@ -5,7 +5,7 @@ using namespace std;
 
 class Speaker {
 public:
-    long  id;
+    int  id;
     string name;
     float score[2];
 

@@ -74,6 +74,7 @@ void SpeechManager:: start_speech() {
     speaker_contest();
 
     // 3.显示晋级结果
+    show_score();
 
     // 第二轮
     // 1.抽签
@@ -144,7 +145,7 @@ void SpeechManager:: speaker_contest() {
             printf("小组%d 名次：\n", num / 6);
             for (multimap<double, int, greater<double>> ::iterator it = group_score.begin(); it != group_score.end(); it++) {
                 Speaker speaker = this->m_speaker[it->second];
-                printf("编号：%ld 姓名：%s 成绩：%.1f\n", speaker.id, speaker.name.c_str(), it->first);
+                printf("选手编号：%ld 姓名：%s 成绩：%.1f\n", speaker.id, speaker.name.c_str(), it->first);
             }
             int count = 0;
             for (multimap<double, int, greater<double>> ::iterator it = group_score.begin(); it != group_score.end() && count < 3; it++, count++) {
@@ -157,5 +158,20 @@ void SpeechManager:: speaker_contest() {
             group_score.clear();
         }
     }
-    printf("第%d轮比赛 结束\n", this->m_index);
+    printf("第%d轮比赛 结束！\n", this->m_index);
+}
+
+void SpeechManager:: show_score() {
+    printf("第%d轮比赛 晋级结果：\n", this->m_index);
+    vector<int> v;
+    if (this->m_index == 1) {
+        v = v2;
+    } else {
+        v = v3;
+    }
+    for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+        Speaker speaker = this->m_speaker[*it];
+        printf("选手编号：%ld 姓名：%s 成绩：%.1f\n", speaker.id, speaker.name.c_str(), speaker.score[this->m_index ]);
+    }
+
 }

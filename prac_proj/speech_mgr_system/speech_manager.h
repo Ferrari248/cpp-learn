@@ -52,4 +52,6 @@ public:
     void speech_draw();
 
     void speaker_contest();
+
+    void show_score();
 };

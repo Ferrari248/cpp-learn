@@ -34,10 +34,6 @@ void SpeechManager:: init_speech() {
 
 }
 
-void SpeechManager:: show_history() {
-    cout << "history is ..." << endl;
-}
-
 void SpeechManager:: clear_history() {
     cout << "clear_history ..." << endl;
 }
@@ -182,11 +178,40 @@ void SpeechManager:: show_score() {
 
 void SpeechManager:: save_record() {
     ofstream ofs;
-    ofs.open("speech.csv", ios::app | ios::out); // append mod
+    ofs.open("speech.csv", ios::out | ios::app); // append mod
     for (vector<int>::iterator it = v3.begin(); it != v3.end(); it++) {
         ofs << *it << "," << this->m_speaker[*it].score[1] << ",";
     }
     ofs << endl;
     ofs.close();
     cout << "record has saved" << endl;
+}
+
+void SpeechManager:: load_record() {
+    ifstream ifs("speech.csv", ios::in);
+    if (!ifs.is_open()) {
+        this->record_is_empty = true;
+        cout << "record not exist" << endl;
+        ifs.close();
+        return;
+    }
+
+    // 文件被清空的情况
+    char ch;
+    ifs >> ch;
+    if (ifs.eof()) {
+        this->record_is_empty = true;
+        cout << "record is empty" << endl;
+        ifs.close();
+        return;
+    }
+
+    this->record_is_empty = false;
+    ifs.putback(ch);
+    string data;
+    while (ifs >> data) {
+        cout << data << endl;
+    }
+    ifs.close();
+
 }

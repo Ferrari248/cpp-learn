@@ -35,8 +35,6 @@ public:
 
     void begin_new_race();
 
-    void show_history();
-
     void clear_history();
 
     void show_menu();
@@ -57,4 +55,13 @@ public:
     void show_score();
 
     void save_record();
+
+    void load_record();
+
+    // 判断speech.csv文件是否为空
+    bool record_is_empty;
+
+     map<int, vector<string >> m_record;
+
+
 };

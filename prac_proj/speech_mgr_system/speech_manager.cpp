@@ -183,8 +183,8 @@ void SpeechManager:: show_score() {
 void SpeechManager:: save_record() {
     ofstream ofs;
     ofs.open("speech.csv", ios::app | ios::out); // append mod
-    for (vector<int>::iterator it = v1.begin(); it != v1.end(); it++) {
-        ofs << *it << ", " << this->m_speaker[*it].score[1] << ",";
+    for (vector<int>::iterator it = v3.begin(); it != v3.end(); it++) {
+        ofs << *it << "," << this->m_speaker[*it].score[1] << ",";
     }
     ofs << endl;
     ofs.close();

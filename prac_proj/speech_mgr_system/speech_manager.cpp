@@ -77,12 +77,15 @@ void SpeechManager:: start_speech() {
     show_score();
 
     // 第二轮
+    this->m_index++;
     // 1.抽签
-    // speech_draw();
+    speech_draw();
 
     // 2.比赛
+    speaker_contest();
 
     // 3.显示最终结果
+    show_score();
 
     // 4.保存比赛记录
 }

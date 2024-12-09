@@ -88,6 +88,9 @@ void SpeechManager:: start_speech() {
     show_score();
 
     // 4.保存比赛记录
+    save_record();
+
+    cout << "本届比赛完毕！" << endl;
 }
 
 void SpeechManager:: speech_draw() {
@@ -175,5 +178,15 @@ void SpeechManager:: show_score() {
         Speaker speaker = this->m_speaker[*it];
         printf("选手编号：%d 姓名：%s 成绩：%.1f\n", *it, speaker.name.c_str(), speaker.score[this->m_index-1]);
     }
+}
 
+void SpeechManager:: save_record() {
+    ofstream ofs;
+    ofs.open("speech.csv", ios::app | ios::out); // append mod
+    for (vector<int>::iterator it = v1.begin(); it != v1.end(); it++) {
+        ofs << *it << ", " << this->m_speaker[*it].score[1] << ",";
+    }
+    ofs << endl;
+    ofs.close();
+    cout << "record has saved" << endl;
 }

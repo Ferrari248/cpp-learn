@@ -7,6 +7,7 @@
 #include <random>
 #include <thread>
 #include <numeric>
+#include <fstream>
 #include "speaker.h"
 
 using namespace std;
@@ -54,4 +55,6 @@ public:
     void speaker_contest();
 
     void show_score();
+
+    void save_record();
 };

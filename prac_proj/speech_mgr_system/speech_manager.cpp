@@ -209,9 +209,28 @@ void SpeechManager:: load_record() {
     this->record_is_empty = false;
     ifs.putback(ch);
     string data;
+    int index = 0;
     while (ifs >> data) {
-        cout << data << endl;
+        // cout << data << endl;
+        // 10004,87.375,10005,84.5812,10011,82.0875,
+        vector<string> v;
+        int pos = -1;
+        int start = 0;
+        while (true) {
+            pos = data.find(",", start);
+            if (pos == -1) {
+                // 没有,号
+                break;
+            }
+            string temp = data.substr(start, pos - start);
+            // cout << temp << endl;
+            v.push_back(temp);
+            start = pos + 1;
+        }
+        this->m_record.insert(make_pair(index, v));
     }
     ifs.close();
-
+    for (map<int,vector<string>>::iterator it = this->m_record.begin(); it != this->m_record.end(); it++) {
+        cout << "届" << it->first + 1 << " 冠军：" << it->second[0] << " 分数：" << it->second[1] << endl;
+    }
 }

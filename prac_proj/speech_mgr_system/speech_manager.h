@@ -61,7 +61,7 @@ public:
     // 判断speech.csv文件是否为空
     bool record_is_empty;
 
-     map<int, vector<string >> m_record;
+    map<int, vector<string>> m_record;
 
 
 };

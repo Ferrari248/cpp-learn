@@ -15,7 +15,7 @@ int main() {
                 sm.begin_new_race();
                 break;
             case 2:
-                sm.load_record();
+                sm.show_record();
                 break;
             case 3:
                 sm.clear_history();

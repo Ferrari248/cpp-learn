@@ -3,6 +3,7 @@
 SpeechManager::SpeechManager() {
     this->init_speech();
     this->create_speaker ();
+    this->load_record();
 }
 
 SpeechManager::~SpeechManager(){}
@@ -230,7 +231,17 @@ void SpeechManager:: load_record() {
         this->m_record.insert(make_pair(index, v));
     }
     ifs.close();
-    for (map<int,vector<string>>::iterator it = this->m_record.begin(); it != this->m_record.end(); it++) {
-        cout << "届" << it->first + 1 << " 冠军：" << it->second[0] << " 分数：" << it->second[1] << endl;
+    // for (map<int,vector<string>>::iterator it = this->m_record.begin(); it != this->m_record.end(); it++) {
+    //     cout << "第" << it->first + 1 << "届比赛  冠军：" << it->second[0] << " 分数：" << it->second[1] << endl;
+    // }
+}
+
+void SpeechManager:: show_record() {
+    for (int i = 0; i < this->m_record.size(); i++) {
+        cout << "第" << i + 1 << "届比赛" << endl;
+        cout << "冠军：" << this->m_record[i][0] << " 得分：" << this->m_record[i][1] << endl;
+        cout << "冠军：" << this->m_record[i][2] << " 得分：" << this->m_record[i][3] << endl;
+        cout << "冠军：" << this->m_record[i][4] << " 得分：" << this->m_record[i][5] << endl;
     }
+    cout << endl;
 }

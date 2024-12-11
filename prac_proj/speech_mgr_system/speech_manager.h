@@ -58,6 +58,8 @@ public:
 
     void load_record();
 
+    void show_record();
+
     // 判断speech.csv文件是否为空
     bool record_is_empty;
 

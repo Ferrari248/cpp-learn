@@ -36,7 +36,19 @@ void SpeechManager:: init_speech() {
 }
 
 void SpeechManager:: clear_history() {
-    cout << "clear_history ..." << endl;
+    cout << "Are you sure clear all the records?" << endl;
+    cout << "1: yes" << endl;
+    cout << "2: no" << endl;
+    int select = 0;
+    cin >> select;
+    if (select == 1) {
+        ofstream ofs("speech.csv", ios::trunc);
+        ofs.close();
+        this->init_speech();
+        this->create_speaker();
+        this->load_record();
+        cout << "clear history finish!" << endl;
+    }
 }
 
 void SpeechManager:: begin_new_race() {

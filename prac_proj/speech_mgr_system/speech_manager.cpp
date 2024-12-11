@@ -32,7 +32,7 @@ void SpeechManager:: init_speech() {
     this->v3.clear();
     this->m_speaker.clear();
     this->m_index = 1;
-
+    this->m_record.clear();
 }
 
 void SpeechManager:: clear_history() {
@@ -86,6 +86,11 @@ void SpeechManager:: start_speech() {
 
     // 4.保存比赛记录
     save_record();
+
+    // 999.重置
+    init_speech();
+    create_speaker();
+    load_record();
 
     cout << "本届比赛完毕！" << endl;
 }
@@ -186,6 +191,8 @@ void SpeechManager:: save_record() {
     ofs << endl;
     ofs.close();
     cout << "record has saved" << endl;
+
+    this->record_is_empty = false;
 }
 
 void SpeechManager:: load_record() {
@@ -237,6 +244,9 @@ void SpeechManager:: load_record() {
 }
 
 void SpeechManager:: show_record() {
+    if (this->record_is_empty) {
+        cout << "record is empty" << endl;
+    }
     for (int i = 0; i < this->m_record.size(); i++) {
         cout << "第" << i + 1 << "届比赛" << endl;
         cout << "冠军：" << this->m_record[i][0] << " 得分：" << this->m_record[i][1] << endl;

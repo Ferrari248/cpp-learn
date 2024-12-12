@@ -22,7 +22,7 @@ int main() {
                 sm.clear_history();
                 break;
             case 0:
-                sm.exit_system();
+                SpeechManager::exit_system();
                 break;
             default:
                 system("clear");

@@ -1,9 +1,7 @@
 #include "speech_manager.h"
 
 SpeechManager::SpeechManager() {
-    this->init_speech();
-    this->create_speaker();
-    this->load_record();
+    this->init_env();
 }
 
 SpeechManager::~SpeechManager()= default;
@@ -26,6 +24,12 @@ void SpeechManager:: exit_system() {
     exit(0);
 }
 
+void SpeechManager:: init_env() {
+    this->init_speech();
+    this->create_speaker();
+    this->load_record();
+}
+
 void SpeechManager:: init_speech() {
     this->v1.clear();
     this->v2.clear();
@@ -44,9 +48,7 @@ void SpeechManager:: clear_history() {
     if (select == 1) {
         ofstream ofs("speech.csv", ios::trunc);
         ofs.close();
-        this->init_speech();
-        this->create_speaker();
-        this->load_record();
+        this->init_env();
         cout << "clear history finish!" << endl;
     }
 }
@@ -100,9 +102,7 @@ void SpeechManager:: start_speech() {
     save_record();
 
     // 999.重置
-    init_speech();
-    create_speaker();
-    load_record();
+    this->init_env();
 
     cout << "本届比赛完毕！" << endl;
 }
@@ -117,8 +117,9 @@ void SpeechManager:: speech_draw() {
     default_random_engine random_engine(random_device{}());
     if (this->m_index == 1) {
         shuffle(v1.begin(), v1.end(), random_engine);
-        for (vector<int>::iterator it = v1.begin(); it != v1.end(); it++) {
-            cout << *it << " ";
+        // for (vector<int>::iterator it = v1.begin(); it != v1.end(); it++) {
+        for (int & it : v1) {
+            cout << it << " ";
         }
     } else {
         shuffle(v2.begin(), v2.end(), random_engine);
@@ -254,6 +255,7 @@ void SpeechManager:: load_record() {
             start = pos + 1;
         }
         this->m_record.insert(make_pair(index, v));
+        index++;
     }
     ifs.close();
     // for (map<int,vector<string>>::iterator it = this->m_record.begin(); it != this->m_record.end(); it++) {

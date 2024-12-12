@@ -48,6 +48,8 @@ public:
     static void exit_system();
 
 
+    void init_env();
+
     void init_speech();
 
     void create_speaker();

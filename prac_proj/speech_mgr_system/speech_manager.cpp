@@ -2,11 +2,11 @@
 
 SpeechManager::SpeechManager() {
     this->init_speech();
-    this->create_speaker ();
+    this->create_speaker();
     this->load_record();
 }
 
-SpeechManager::~SpeechManager(){}
+SpeechManager::~SpeechManager()= default;
 
 void SpeechManager:: show_menu() {
     cout << "**********************************************" << endl;
@@ -57,7 +57,7 @@ void SpeechManager:: begin_new_race() {
 }
 
 void SpeechManager:: create_speaker() {
-    string name_seed = "ABCDEFGHIJKL";
+    const string name_seed = "ABCDEFGHIJKL";
     for (int i = 0; i < name_seed.size(); i++) {
         string name = "player";
         name += name_seed[i];
@@ -68,7 +68,7 @@ void SpeechManager:: create_speaker() {
             sp.score[j] = 0;
         }
 
-        int id = i + 10001;
+        int id = 10000 + i + 1;
         this->v1.push_back(id);
         this->m_speaker.insert(make_pair(id , sp) );
     }
@@ -122,8 +122,9 @@ void SpeechManager:: speech_draw() {
         }
     } else {
         shuffle(v2.begin(), v2.end(), random_engine);
-        for (vector<int>::iterator it = v2.begin(); it != v2.end(); it++) {
-            cout << *it << " ";
+        // for (vector<int>::iterator it = v2.begin(); it != v2.end(); it++) { *it .....
+        for (int & it : v2) {
+            cout << it << " ";
         }
     }
     cout << "=========" << endl;
@@ -131,7 +132,8 @@ void SpeechManager:: speech_draw() {
 
 void SpeechManager:: speaker_contest() {
     cout << "第"<< this->m_index <<"轮比赛 正式开赛..." << endl;
-    multimap<double, int, greater<double>> group_score;
+    // multimap<double, int, greater<double>> group_score;
+    multimap<double, int, greater<>> group_score;
     int num = 0;
 
     // 模拟比赛耗时
@@ -143,7 +145,7 @@ void SpeechManager:: speaker_contest() {
         v_src = v2;
     }
     deque<double> d;
-    for (vector<int>::iterator it = v_src.begin(); it != v_src.end(); it++) {
+    for (int & it : v_src) {
         num++;
         for (int i = 0; i < 10; i++) {
             double score = (rand() % 400 + 600) / 10.0f;
@@ -156,22 +158,24 @@ void SpeechManager:: speaker_contest() {
         d.pop_back();
         double sum = accumulate(d.begin(), d.end(), 0.0f);
         double avg = sum / (double) d.size();
-        printf("选手编号：%d 姓名：%s 平均分： %.1f \n", *it, this->m_speaker[*it].name.c_str(), avg);
-        this->m_speaker[*it].score[this->m_index - 1] = avg;
+        printf("选手编号：%d 姓名：%s 平均分： %.1f \n", it, this->m_speaker[it].name.c_str(), avg);
+        this->m_speaker[it].score[this->m_index - 1] = avg;
 
-        group_score.insert(make_pair(avg, *it));
+        group_score.insert(make_pair(avg, it));
         if (num % 6 == 0) {
             printf("小组%d 名次：\n", num / 6);
-            for (multimap<double, int, greater<double>> ::iterator it = group_score.begin(); it != group_score.end(); it++) {
-                Speaker speaker = this->m_speaker[it->second];
-                printf("选手编号：%d 姓名：%s 成绩：%.1f\n", it->second, speaker.name.c_str(), it->first);
+            // for (multimap<double, int, greater<double>> ::iterator it = group_score.begin(); it != group_score.end(); it++) {
+            for (auto & git : group_score) {
+                Speaker speaker = this->m_speaker[git.second];
+                printf("选手编号：%d 姓名：%s 成绩：%.1f\n", git.second, speaker.name.c_str(), git.first);
             }
             int count = 0;
-            for (multimap<double, int, greater<double>> ::iterator it = group_score.begin(); it != group_score.end() && count < 3; it++, count++) {
+            // for (multimap<double, int, greater<double>> ::iterator it = group_score.begin(); it != group_score.end() && count < 3; it++, count++) {
+            for (auto git = group_score.begin(); git != group_score.end() && count < 3; git++, count++) {
                 if (this->m_index == 1) {
-                    v2.push_back(it->second);
+                    v2.push_back(git->second);
                 } else {
-                    v3.push_back(it->second);
+                    v3.push_back(git->second);
                 }
             }
             group_score.clear();
@@ -188,17 +192,19 @@ void SpeechManager:: show_score() {
     } else {
         v = v3;
     }
-    for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
-        Speaker speaker = this->m_speaker[*it];
-        printf("选手编号：%d 姓名：%s 成绩：%.1f\n", *it, speaker.name.c_str(), speaker.score[this->m_index-1]);
+    // for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+    for (int & it : v) {
+        Speaker speaker = this->m_speaker[it];
+        printf("选手编号：%d 姓名：%s 成绩：%.1f\n", it, speaker.name.c_str(), speaker.score[this->m_index-1]);
     }
 }
 
 void SpeechManager:: save_record() {
     ofstream ofs;
     ofs.open("speech.csv", ios::out | ios::app); // append mod
-    for (vector<int>::iterator it = v3.begin(); it != v3.end(); it++) {
-        ofs << *it << "," << this->m_speaker[*it].score[1] << ",";
+    // for (vector<int>::iterator it = v3.begin(); it != v3.end(); it++) {
+    for (int & it : v3) {
+        ofs << it << "," << this->m_speaker[it].score[1] << ",";
     }
     ofs << endl;
     ofs.close();

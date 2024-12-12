@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-    srand((unsigned int)time(NULL));
+    srand((unsigned int)time(nullptr));
     SpeechManager sm;
     int choice = 0;
     while (true) {

@@ -27,7 +27,13 @@ public:
     map<int, Speaker> m_speaker;
 
     // 当前是第几场比赛
-    int m_index;
+    int m_index{};
+
+    // 判断speech.csv文件是否为空
+    bool record_is_empty{};
+
+    // 历史记录
+    map<int, vector<string>> m_record;
 
     SpeechManager();
 
@@ -37,9 +43,9 @@ public:
 
     void clear_history();
 
-    void show_menu();
+    static void show_menu();
 
-    void exit_system();
+    static void exit_system();
 
 
     void init_speech();
@@ -59,11 +65,5 @@ public:
     void load_record();
 
     void show_record();
-
-    // 判断speech.csv文件是否为空
-    bool record_is_empty;
-
-    map<int, vector<string>> m_record;
-
 
 };

@@ -4,7 +4,8 @@
 using namespace std;
 
 /**
- * https://leetcode.cn/problems/longest-consecutive-sequence/submissions/582725454/?envType=study-plan-v2&envId=top-100-liked
+ * 128
+ * https://leetcode.cn/problems/longest-consecutive-sequence/description/?envType=study-plan-v2&envId=top-100-liked
  */
 class Solution {
 public:

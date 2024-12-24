@@ -67,9 +67,28 @@ void test_03() {
   print_vector(v1);
   v1.resize(3, 9);
   print_vector(v1);
+}
 
+void test_04() {
+  vector<int> v1;
+  for (int i = 0; i < 10; i++)
+  {
+    v1.push_back(i+1);
+  }
+
+  v1.pop_back();
+  print_vector(v1);
+
+  v1.insert(v1.begin(), -1);
+  v1.insert(v1.end(), 3, -2);
+  print_vector(v1);
+
+  v1.erase(v1.begin());
+  v1.erase(v1.begin(), v1.end());
+//  v1.clear();
+  print_vector(v1);
 }
 
 int main() {
-  test_03();
+  test_04();
 }

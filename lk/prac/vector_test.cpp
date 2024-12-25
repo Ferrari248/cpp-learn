@@ -89,6 +89,47 @@ void test_04() {
   print_vector(v1);
 }
 
+void test_05() {
+  vector<int> v1;
+  for (int i = 0; i < 10; i++) {
+    v1.push_back(i+1);
+  }
+  for (int i = 0; i < v1.size(); i++) {
+    cout << v1[i] << " ";
+  }
+  cout << endl;
+  for (int i = 0; i < v1.size(); i++) {
+    cout << v1.at(i) << " ";
+  }
+  cout << endl;
+  cout << v1.front() << endl;
+  cout << v1.back() << endl;
+}
+
+void test_06() {
+  vector<int> v1;
+  for (int i = 0; i < 5; i++) {
+    v1.push_back(i+1);
+  }
+  vector<int> v2;
+  for (int i = 0; i < 10; i++) {
+    v2.push_back(-i-1);
+  }
+  v2.swap(v1);
+  print_vector(v1);
+  print_vector(v2);
+
+  cout << v1.capacity() << endl;
+  cout << v2.capacity() << endl;
+  vector<int>(v1).swap(v1); //匿名对象
+  vector<int>(v2).swap(v2); //匿名对象
+  cout << v1.capacity() << endl;
+  cout << v2.capacity() << endl;
+
+  v1.reserve(1000); // 预留内存
+  cout << v1.capacity() << endl;
+}
+
 int main() {
-  test_04();
+  test_06();
 }

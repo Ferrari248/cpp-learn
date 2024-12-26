@@ -1,6 +1,7 @@
-#include<string>
 #include<vector>
+#include<algorithm>
 #include<iostream>
+
 
 using namespace std;
 
@@ -87,6 +88,14 @@ void test_04() {
   v1.erase(v1.begin(), v1.end());
 //  v1.clear();
   print_vector(v1);
+
+  // sort
+  v1.push_back(3);
+  v1.push_back(1);
+  v1.push_back(2);
+  print_vector(v1);
+  sort(v1.begin(), v1.end());
+  print_vector(v1);
 }
 
 void test_05() {
@@ -131,5 +140,5 @@ void test_06() {
 }
 
 int main() {
-  test_06();
+  test_04();
 }

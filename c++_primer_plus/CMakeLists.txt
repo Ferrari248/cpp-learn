@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.29)
 project(c++_primer_plus)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 11)
 
 # 添加当前目录下所有的源文件（.cpp 或 .cxx）
 file(GLOB_RECURSE SOURCES **/*.cpp)
